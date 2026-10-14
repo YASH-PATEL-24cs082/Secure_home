@@ -1,0 +1,130 @@
+[4425 - Suricata-Main] 2026-09-16 14:20:35 Notice: suricata: This is Suricata version 8.0.6 RELEASE running in SYSTEM mode
+[4425 - Suricata-Main] 2026-09-16 14:20:35 Info: cpu: CPUs/cores online: 2
+[4425 - Suricata-Main] 2026-09-16 14:20:35 Info: device: br-securehome: shortening device name to br-s..home
+[4425 - Suricata-Main] 2026-09-16 14:20:35 Info: suricata: Setting engine mode to IDS mode by default
+[4425 - Suricata-Main] 2026-09-16 14:20:35 Info: exception-policy: master exception-policy set to: auto
+[4425 - Suricata-Main] 2026-09-16 14:20:35 Info: suricata: Preparing unexpected signal handling
+[4425 - Suricata-Main] 2026-09-16 14:20:35 Info: logopenfile: fast output device (regular) initialized: fast.log
+[4425 - Suricata-Main] 2026-09-16 14:20:35 Info: logopenfile: eve-log output device (regular) initialized: eve.json
+[4425 - Suricata-Main] 2026-09-16 14:20:35 Info: logopenfile: stats output device (regular) initialized: stats.log
+[4425 - Suricata-Main] 2026-09-16 14:20:35 Warning: detect: No rule files match the pattern suricata/securehome.rules
+[4425 - Suricata-Main] 2026-09-16 14:20:35 Warning: detect: 1 rule files specified, but no rules were loaded!
+[4425 - Suricata-Main] 2026-09-16 14:20:35 Info: threshold-config: Threshold config parsed: 0 rule(s) found
+[4425 - Suricata-Main] 2026-09-16 14:20:35 Info: detect: 0 signatures processed. 0 are IP-only rules, 0 are inspecting packet payload, 0 inspect application layer, 0 are decoder event only
+[4425 - Suricata-Main] 2026-09-16 14:20:35 Info: unix-manager: unix socket '/var/run/suricata/suricata-command.socket'
+[4425 - Suricata-Main] 2026-09-16 14:20:35 Info: runmodes: br-securehome: creating 2 threads
+[4427 - W#01-br-s..home] 2026-09-16 14:20:35 Info: ioctl: br-securehome: MTU 1500
+[4425 - Suricata-Main] 2026-09-16 14:20:35 Notice: threads: Threads created -> W: 2 FM: 1 FR: 1   Engine started.
+[4428 - W#02-br-s..home] 2026-09-16 14:24:18 Warning: af-packet: br-securehome: failed to poll interface: Network is down
+[4427 - W#01-br-s..home] 2026-09-16 14:24:18 Warning: af-packet: br-securehome: failed to poll interface: Network is down
+[4427 - W#01-br-s..home] 2026-09-16 14:24:19 Info: af-packet: br-securehome: interface is back up
+[4428 - W#02-br-s..home] 2026-09-16 14:24:19 Info: af-packet: br-securehome: interface is back up
+[4428 - W#02-br-s..home] 2026-09-16 14:27:35 Warning: af-packet: br-securehome: failed to poll interface: Network is down
+[4427 - W#01-br-s..home] 2026-09-16 14:27:35 Warning: af-packet: br-securehome: failed to poll interface: Network is down
+[4428 - W#02-br-s..home] 2026-09-16 14:27:37 Info: af-packet: br-securehome: interface is back up
+[4427 - W#01-br-s..home] 2026-09-16 14:27:37 Info: af-packet: br-securehome: interface is back up
+[11601 - Suricata-Main] 2026-09-16 14:32:59 Notice: suricata: This is Suricata version 8.0.6 RELEASE running in SYSTEM mode
+[11601 - Suricata-Main] 2026-09-16 14:32:59 Info: cpu: CPUs/cores online: 2
+[11601 - Suricata-Main] 2026-09-16 14:32:59 Info: device: br-securehome: shortening device name to br-s..home
+[11601 - Suricata-Main] 2026-09-16 14:32:59 Info: suricata: Setting engine mode to IDS mode by default
+[11601 - Suricata-Main] 2026-09-16 14:32:59 Info: exception-policy: master exception-policy set to: auto
+[11601 - Suricata-Main] 2026-09-16 14:32:59 Info: suricata: Preparing unexpected signal handling
+[11601 - Suricata-Main] 2026-09-16 14:32:59 Info: logopenfile: fast output device (regular) initialized: fast.log
+[11601 - Suricata-Main] 2026-09-16 14:32:59 Info: logopenfile: eve-log output device (regular) initialized: eve.json
+[11601 - Suricata-Main] 2026-09-16 14:32:59 Info: logopenfile: stats output device (regular) initialized: stats.log
+[11601 - Suricata-Main] 2026-09-16 14:32:59 Warning: detect: No rule files match the pattern suricata/securehome.rules
+[11601 - Suricata-Main] 2026-09-16 14:32:59 Warning: detect: 1 rule files specified, but no rules were loaded!
+[11601 - Suricata-Main] 2026-09-16 14:32:59 Info: threshold-config: Threshold config parsed: 0 rule(s) found
+[11601 - Suricata-Main] 2026-09-16 14:32:59 Info: detect: 0 signatures processed. 0 are IP-only rules, 0 are inspecting packet payload, 0 inspect application layer, 0 are decoder event only
+[11601 - Suricata-Main] 2026-09-16 14:32:59 Info: unix-manager: unix socket '/var/run/suricata/suricata-command.socket'
+[11601 - Suricata-Main] 2026-09-16 14:32:59 Error: af-packet: fanout not supported by kernel: Kernel too old or cluster-id 1 already in use.
+[11601 - Suricata-Main] 2026-09-16 14:32:59 Info: runmodes: br-securehome: creating 1 thread
+[11603 - W#01-br-s..home] 2026-09-16 14:32:59 Info: ioctl: br-securehome: MTU 1500
+[11601 - Suricata-Main] 2026-09-16 14:32:59 Notice: threads: Threads created -> W: 1 FM: 1 FR: 1   Engine started.
+[16299 - Suricata-Main] 2026-09-16 14:41:00 Notice: suricata: This is Suricata version 8.0.6 RELEASE running in SYSTEM mode
+[16299 - Suricata-Main] 2026-09-16 14:41:00 Info: cpu: CPUs/cores online: 2
+[16299 - Suricata-Main] 2026-09-16 14:41:00 Info: suricata: Running suricata under test mode
+[16299 - Suricata-Main] 2026-09-16 14:41:00 Info: suricata: Setting engine mode to IDS mode by default
+[16299 - Suricata-Main] 2026-09-16 14:41:00 Info: exception-policy: master exception-policy set to: auto
+[16299 - Suricata-Main] 2026-09-16 14:41:00 Info: suricata: Preparing unexpected signal handling
+[16299 - Suricata-Main] 2026-09-16 14:41:00 Info: logopenfile: fast output device (regular) initialized: fast.log
+[16299 - Suricata-Main] 2026-09-16 14:41:00 Info: logopenfile: eve-log output device (regular) initialized: eve.json
+[16299 - Suricata-Main] 2026-09-16 14:41:00 Info: logopenfile: stats output device (regular) initialized: stats.log
+[16299 - Suricata-Main] 2026-09-16 14:41:00 Info: detect: 1 rule files processed. 3 rules successfully loaded, 0 rules failed, 0 rules skipped
+[16299 - Suricata-Main] 2026-09-16 14:41:00 Info: threshold-config: Threshold config parsed: 0 rule(s) found
+[16299 - Suricata-Main] 2026-09-16 14:41:00 Info: detect: 3 signatures processed. 0 are IP-only rules, 0 are inspecting packet payload, 0 inspect application layer, 0 are decoder event only
+[16299 - Suricata-Main] 2026-09-16 14:41:00 Notice: suricata: Configuration provided was successfully loaded. Exiting.
+[11601 - Suricata-Main] 2026-09-16 14:42:03 Notice: suricata: Signal Received.  Stopping engine.
+[11601 - Suricata-Main] 2026-09-16 14:42:04 Info: suricata: time elapsed 544.621s
+[11601 - Suricata-Main] 2026-09-16 14:42:05 Info: counters: Alerts: 0
+[11601 - Suricata-Main] 2026-09-16 14:42:05 Notice: device: br-securehome: packets: 742, drops: 0 (0.00%), invalid chksum: 0
+[16916 - Suricata-Main] 2026-09-16 14:42:13 Notice: suricata: This is Suricata version 8.0.6 RELEASE running in SYSTEM mode
+[16916 - Suricata-Main] 2026-09-16 14:42:13 Info: cpu: CPUs/cores online: 2
+[16916 - Suricata-Main] 2026-09-16 14:42:13 Info: device: br-securehome: shortening device name to br-s..home
+[16916 - Suricata-Main] 2026-09-16 14:42:13 Info: suricata: Setting engine mode to IDS mode by default
+[16916 - Suricata-Main] 2026-09-16 14:42:13 Info: exception-policy: master exception-policy set to: auto
+[16916 - Suricata-Main] 2026-09-16 14:42:13 Info: suricata: Preparing unexpected signal handling
+[16916 - Suricata-Main] 2026-09-16 14:42:13 Info: logopenfile: fast output device (regular) initialized: fast.log
+[16916 - Suricata-Main] 2026-09-16 14:42:13 Info: logopenfile: eve-log output device (regular) initialized: eve.json
+[16916 - Suricata-Main] 2026-09-16 14:42:13 Info: logopenfile: stats output device (regular) initialized: stats.log
+[16916 - Suricata-Main] 2026-09-16 14:42:13 Info: detect: 1 rule files processed. 3 rules successfully loaded, 0 rules failed, 0 rules skipped
+[16916 - Suricata-Main] 2026-09-16 14:42:13 Info: threshold-config: Threshold config parsed: 0 rule(s) found
+[16916 - Suricata-Main] 2026-09-16 14:42:13 Info: detect: 3 signatures processed. 0 are IP-only rules, 0 are inspecting packet payload, 0 inspect application layer, 0 are decoder event only
+[16916 - Suricata-Main] 2026-09-16 14:42:13 Info: unix-manager: unix socket '/var/run/suricata/suricata-command.socket'
+[16916 - Suricata-Main] 2026-09-16 14:42:13 Error: af-packet: fanout not supported by kernel: Kernel too old or cluster-id 1 already in use.
+[16916 - Suricata-Main] 2026-09-16 14:42:13 Info: runmodes: br-securehome: creating 1 thread
+[16918 - W#01-br-s..home] 2026-09-16 14:42:13 Info: ioctl: br-securehome: MTU 1500
+[16916 - Suricata-Main] 2026-09-16 14:42:13 Notice: threads: Threads created -> W: 1 FM: 1 FR: 1   Engine started.
+[3569 - Suricata-Main] 2026-09-17 11:35:42 Notice: suricata: This is Suricata version 8.0.6 RELEASE running in SYSTEM mode
+[3569 - Suricata-Main] 2026-09-17 11:35:42 Info: cpu: CPUs/cores online: 2
+[3569 - Suricata-Main] 2026-09-17 11:35:42 Info: device: br-securehome: shortening device name to br-s..home
+[3569 - Suricata-Main] 2026-09-17 11:35:42 Info: suricata: Setting engine mode to IDS mode by default
+[3569 - Suricata-Main] 2026-09-17 11:35:42 Info: exception-policy: master exception-policy set to: auto
+[3569 - Suricata-Main] 2026-09-17 11:35:42 Info: suricata: Preparing unexpected signal handling
+[3569 - Suricata-Main] 2026-09-17 11:35:42 Info: logopenfile: fast output device (regular) initialized: fast.log
+[3569 - Suricata-Main] 2026-09-17 11:35:42 Info: logopenfile: eve-log output device (regular) initialized: eve.json
+[3569 - Suricata-Main] 2026-09-17 11:35:42 Info: logopenfile: stats output device (regular) initialized: stats.log
+[3569 - Suricata-Main] 2026-09-17 11:35:42 Info: detect: 1 rule files processed. 3 rules successfully loaded, 0 rules failed, 0 rules skipped
+[3569 - Suricata-Main] 2026-09-17 11:35:42 Info: threshold-config: Threshold config parsed: 0 rule(s) found
+[3569 - Suricata-Main] 2026-09-17 11:35:42 Info: detect: 3 signatures processed. 0 are IP-only rules, 0 are inspecting packet payload, 0 inspect application layer, 0 are decoder event only
+[3569 - Suricata-Main] 2026-09-17 11:35:42 Info: unix-manager: unix socket '/var/run/suricata/suricata-command.socket'
+[3569 - Suricata-Main] 2026-09-17 11:35:42 Info: runmodes: br-securehome: creating 2 threads
+[3571 - W#01-br-s..home] 2026-09-17 11:35:42 Info: ioctl: br-securehome: MTU 1500
+[3569 - Suricata-Main] 2026-09-17 11:35:42 Notice: threads: Threads created -> W: 2 FM: 1 FR: 1   Engine started.
+[27704 - Suricata-Main] 2026-10-14 11:55:00 Notice: suricata: This is Suricata version 8.0.6 RELEASE running in SYSTEM mode
+[27704 - Suricata-Main] 2026-10-14 11:55:00 Info: cpu: CPUs/cores online: 2
+[27704 - Suricata-Main] 2026-10-14 11:55:00 Info: device: br-securehome: shortening device name to br-s..home
+[27704 - Suricata-Main] 2026-10-14 11:55:00 Info: suricata: Setting engine mode to IDS mode by default
+[27704 - Suricata-Main] 2026-10-14 11:55:00 Info: exception-policy: master exception-policy set to: auto
+[27704 - Suricata-Main] 2026-10-14 11:55:00 Info: suricata: Preparing unexpected signal handling
+[27704 - Suricata-Main] 2026-10-14 11:55:01 Info: logopenfile: fast output device (regular) initialized: fast.log
+[27704 - Suricata-Main] 2026-10-14 11:55:01 Info: logopenfile: eve-log output device (regular) initialized: eve.json
+[27704 - Suricata-Main] 2026-10-14 11:55:01 Info: logopenfile: stats output device (regular) initialized: stats.log
+[27704 - Suricata-Main] 2026-10-14 11:55:01 Info: detect: 1 rule files processed. 3 rules successfully loaded, 0 rules failed, 0 rules skipped
+[27704 - Suricata-Main] 2026-10-14 11:55:01 Info: threshold-config: Threshold config parsed: 0 rule(s) found
+[27704 - Suricata-Main] 2026-10-14 11:55:01 Info: detect: 3 signatures processed. 0 are IP-only rules, 0 are inspecting packet payload, 0 inspect application layer, 0 are decoder event only
+[27704 - Suricata-Main] 2026-10-14 11:55:01 Info: unix-manager: unix socket '/var/run/suricata/suricata-command.socket'
+[27704 - Suricata-Main] 2026-10-14 11:55:01 Info: runmodes: br-securehome: creating 2 threads
+[27706 - W#01-br-s..home] 2026-10-14 11:55:01 Info: ioctl: br-securehome: MTU 1500
+[27704 - Suricata-Main] 2026-10-14 11:55:01 Notice: threads: Threads created -> W: 2 FM: 1 FR: 1   Engine started.
+[27704 - Suricata-Main] 2026-10-14 12:24:50 Notice: suricata: Signal Received.  Stopping engine.
+[2319 - Suricata-Main] 2026-10-14 13:13:15 Notice: suricata: This is Suricata version 8.0.6 RELEASE running in SYSTEM mode
+[2319 - Suricata-Main] 2026-10-14 13:13:15 Info: cpu: CPUs/cores online: 2
+[2319 - Suricata-Main] 2026-10-14 13:13:15 Info: device: br-securehome: shortening device name to br-s..home
+[2319 - Suricata-Main] 2026-10-14 13:13:15 Info: suricata: Setting engine mode to IDS mode by default
+[2319 - Suricata-Main] 2026-10-14 13:13:15 Info: exception-policy: master exception-policy set to: auto
+[2319 - Suricata-Main] 2026-10-14 13:13:15 Info: suricata: Preparing unexpected signal handling
+[2319 - Suricata-Main] 2026-10-14 13:13:15 Info: logopenfile: fast output device (regular) initialized: fast.log
+[2319 - Suricata-Main] 2026-10-14 13:13:15 Info: logopenfile: eve-log output device (regular) initialized: eve.json
+[2319 - Suricata-Main] 2026-10-14 13:13:15 Info: logopenfile: stats output device (regular) initialized: stats.log
+[2319 - Suricata-Main] 2026-10-14 13:13:15 Info: detect: 1 rule files processed. 3 rules successfully loaded, 0 rules failed, 0 rules skipped
+[2319 - Suricata-Main] 2026-10-14 13:13:15 Info: threshold-config: Threshold config parsed: 0 rule(s) found
+[2319 - Suricata-Main] 2026-10-14 13:13:15 Info: detect: 3 signatures processed. 0 are IP-only rules, 0 are inspecting packet payload, 0 inspect application layer, 0 are decoder event only
+[2319 - Suricata-Main] 2026-10-14 13:13:15 Info: unix-manager: unix socket '/var/run/suricata/suricata-command.socket'
+[2319 - Suricata-Main] 2026-10-14 13:13:15 Info: runmodes: br-securehome: creating 2 threads
+[2321 - W#01-br-s..home] 2026-10-14 13:13:15 Info: ioctl: br-securehome: MTU 1500
+[2319 - Suricata-Main] 2026-10-14 13:13:15 Notice: threads: Threads created -> W: 2 FM: 1 FR: 1   Engine started.
+[2319 - Suricata-Main] 2026-10-14 13:16:25 Notice: suricata: Signal Received.  Stopping engine.
+[2319 - Suricata-Main] 2026-10-14 13:16:25 Info: suricata: time elapsed 190.133s
+[2319 - Suricata-Main] 2026-10-14 13:16:26 Info: counters: Alerts: 35
+[2319 - Suricata-Main] 2026-10-14 13:16:27 Notice: device: br-securehome: packets: 737, drops: 0 (0.00%), invalid chksum: 0

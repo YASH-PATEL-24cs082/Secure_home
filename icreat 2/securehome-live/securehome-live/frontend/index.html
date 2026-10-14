@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SecureHome — Live Threat Dashboard</title>
+<meta name="description" content="SecureHome real-time IoT threat detection dashboard with Suricata IDS and active response.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:        #f0ece8;
+  --surface:   #faf8f5;
+  --surface2:  #ffffff;
+  --line:      #e8e2da;
+  --line2:     #d5ccc0;
+  --dim:       #a09284;
+  --fg:        #2b2117;
+  --fg2:       #5c4d3c;
+  --coral:     #e8603a;
+  --coral-lt:  #f7d4c9;
+  --coral-dk:  #c44523;
+  --amber:     #f5a623;
+  --amber-lt:  #fdeabc;
+  --emerald:   #2ecc8c;
+  --emerald-lt:#c7f2e4;
+  --sky:       #4aa3e0;
+  --sky-lt:    #cde9f8;
+  --safe:      var(--emerald);
+  --safe-bg:   var(--emerald-lt);
+  --susp:      var(--amber);
+  --susp-bg:   var(--amber-lt);
+  --block:     var(--coral);
+  --block-bg:  var(--coral-lt);
+  --radius:    16px;
+  --radius-sm: 10px;
+  --shadow:    0 2px 12px rgba(43,33,23,.07), 0 1px 3px rgba(43,33,23,.05);
+  --shadow-lg: 0 8px 40px rgba(43,33,23,.12), 0 2px 8px rgba(43,33,23,.06);
+  --sans:  'Inter', system-ui, sans-serif;
+  --mono:  'JetBrains Mono', monospace;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--line2); border-radius: 99px; }
+.wrap {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 24px 24px 48px;
+}
+/* Header */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.brand { display: flex; align-items: center; gap: 14px; }
+.logo-mark {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--coral) 0%, var(--coral-dk) 100%);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 14px rgba(232,96,58,.35);
+  flex: none;
+  font-size: 22px;
+}
+.brand-text .name { font-size: 18px; font-weight: 800; letter-spacing: -.3px; }
+.brand-text .tagline { font-size: 11px; color: var(--dim); font-weight: 500; letter-spacing: .5px; text-transform: uppercase; }
+.header-right { display: flex; align-items: center; gap: 12px; }
+.pill-time {
+  background: var(--surface2);
+  border: 1px solid var(--line);
+  border-radius: 99px;
+  padding: 6px 16px;
+  font-size: 13px; font-weight: 600; color: var(--fg2);
+  box-shadow: var(--shadow);
+  font-family: var(--mono);
+}
+#live-badge {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 11px; font-weight: 700; letter-spacing: .8px; text-transform: uppercase;
+  padding: 7px 16px; border-radius: 99px;
+  background: var(--surface2);
+  border: 1.5px solid var(--line2);
+  color: var(--dim);
+  box-shadow: var(--shadow);
+  transition: all .3s ease;
+}
+#live-badge .dot-live {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--dim); transition: background .3s;
+}
+#live-badge.on { border-color: var(--emerald); color: #1a7a55; background: var(--emerald-lt); }
+#live-badge.on .dot-live {
+  background: var(--emerald);
+  box-shadow: 0 0 0 3px rgba(46,204,140,.25);
+  animation: blink 1.4s ease-in-out infinite;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:.4} }
+
+/* Banner */
+.banner {
+  background: linear-gradient(135deg, var(--coral) 0%, #c44523 100%);
+  border-radius: var(--radius);
+  padding: 22px 28px;
+  color: #fff;
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 20px;
+  box-shadow: 0 6px 28px rgba(232,96,58,.32);
+  flex-wrap: wrap; gap: 12px;
+}
+.banner-left .ttl { font-size: 22px; font-weight: 800; letter-spacing: -.3px; }
+.banner-left .sub { font-size: 13px; opacity: .85; margin-top: 3px; }
+.banner-right { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.banner-pill {
+  background: rgba(255,255,255,.18);
+  border: 1px solid rgba(255,255,255,.35);
+  border-radius: 99px; padding: 6px 14px;
+  font-size: 12px; font-weight: 600;
+  backdrop-filter: blur(8px);
+}
+
+/* Stat row */
+.stat-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-bottom: 20px; }
+@media(max-width:640px){ .stat-row { grid-template-columns: 1fr; } }
+.stat-card {
+  background: var(--surface2); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 20px 22px;
+  box-shadow: var(--shadow);
+  display: flex; align-items: center; gap: 16px;
+  transition: transform .2s, box-shadow .2s;
+}
+.stat-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+.stat-icon {
+  width: 48px; height: 48px; border-radius: 13px;
+  display: flex; align-items: center; justify-content: center;
+  flex: none; font-size: 21px;
+}
+.stat-icon.alerts  { background: var(--susp-bg); }
+.stat-icon.blocked { background: var(--block-bg); }
+.stat-icon.devices { background: var(--sky-lt); }
+.stat-val { font-size: 34px; font-weight: 800; letter-spacing: -1px; line-height: 1; }
+.stat-lbl { font-size: 11px; font-weight: 600; letter-spacing: .7px; text-transform: uppercase; color: var(--dim); margin-top: 3px; }
+.si-alerts  .stat-val { color: var(--amber); }
+.si-blocked .stat-val { color: var(--coral); }
+.si-devices .stat-val { color: var(--sky);   }
+
+/* Pipeline */
+.pipeline-card {
+  background: var(--surface2); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 22px 28px;
+  box-shadow: var(--shadow); margin-bottom: 20px;
+}
+.section-title {
+  font-size: 11px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase;
+  color: var(--dim); margin-bottom: 20px;
+  display: flex; align-items: center; gap: 8px;
+}
+.section-title::before {
+  content: ''; width: 3px; height: 14px;
+  background: var(--coral); border-radius: 99px; display: block;
+}
+.pipe { display: flex; gap: 0; position: relative; }
+.pipe::before {
+  content: ''; position: absolute; top: 22px; left: 44px; right: 44px;
+  height: 2px; background: var(--line2); z-index: 0;
+}
+.stage {
+  flex: 1; display: flex; flex-direction: column;
+  align-items: center; gap: 8px;
+  position: relative; z-index: 1;
+}
+.stage-icon {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: var(--bg); border: 2px solid var(--line2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  transition: all .3s ease;
+  box-shadow: 0 0 0 4px var(--surface2);
+}
+.stage-lbl {
+  font-size: 10px; font-weight: 700; letter-spacing: .7px;
+  text-transform: uppercase; color: var(--dim); text-align: center;
+  transition: color .3s;
+}
+.stage-num { font-size: 9px; font-weight: 500; color: var(--line2); }
+.stage.done .stage-icon { background: var(--emerald-lt); border-color: var(--emerald); }
+.stage.done .stage-lbl  { color: #1a7a55; }
+.stage.active .stage-icon {
+  background: var(--susp-bg); border-color: var(--amber);
+  animation: stagePulse 1s ease-in-out infinite;
+}
+.stage.active .stage-lbl { color: #8a5e0a; }
+@keyframes stagePulse {
+  0%,100%{ box-shadow: 0 0 0 4px var(--surface2), 0 0 0 7px rgba(245,166,35,.15); }
+  50%    { box-shadow: 0 0 0 4px var(--surface2), 0 0 0 12px rgba(245,166,35,.28); }
+}
+
+/* Main grid */
+.main-grid { display: grid; grid-template-columns: 340px 1fr; gap: 20px; }
+@media(max-width:900px){ .main-grid { grid-template-columns: 1fr; } }
+.card {
+  background: var(--surface2); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 22px 24px;
+  box-shadow: var(--shadow);
+}
+
+/* Devices */
+.device-row {
+  display: flex; align-items: center; gap: 12px;
+  padding: 11px 0; border-bottom: 1px solid var(--line);
+}
+.device-row:last-child { border-bottom: 0; }
+.dev-icon-wrap {
+  width: 36px; height: 36px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  flex: none; font-size: 16px;
+}
+.dev-icon-wrap.camera   { background: var(--sky-lt);       }
+.dev-icon-wrap.esp32    { background: var(--emerald-lt);   }
+.dev-icon-wrap.plug     { background: var(--amber-lt);     }
+.dev-icon-wrap.attacker { background: var(--susp-bg);      }
+.dev-icon-wrap.c2       { background: var(--block-bg);     }
+.dev-info { flex: 1; min-width: 0; }
+.dev-name { font-size: 13px; font-weight: 600; }
+.dev-ip   { font-size: 11px; color: var(--dim); font-family: var(--mono); }
+.dev-badge {
+  font-size: 9px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase;
+  padding: 3px 9px; border-radius: 99px; white-space: nowrap;
+}
+.dev-badge.camera   { background: var(--sky-lt);       color: #1e6fa0; }
+.dev-badge.esp32    { background: var(--emerald-lt);   color: #1a7a55; }
+.dev-badge.plug     { background: var(--amber-lt);     color: #8a5e0a; }
+.dev-badge.attacker { background: var(--susp-bg);      color: #8a5e0a; }
+.dev-badge.c2       { background: var(--block-bg);     color: #9c2e10; }
+
+/* Feed */
+#feed-scroll { max-height: 450px; overflow-y: auto; padding-right: 2px; }
+.ev-row {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 10px 0; border-bottom: 1px solid var(--line);
+}
+.ev-row:last-child { border-bottom: 0; }
+.ev-row.new { animation: flashIn .7s ease; }
+@keyframes flashIn {
+  from { background: rgba(232,96,58,.1); border-radius: 8px; }
+  to   { background: transparent; }
+}
+.ev-sev {
+  flex: none; width: 80px; text-align: center;
+  font-size: 9px; font-weight: 800; letter-spacing: .6px; text-transform: uppercase;
+  padding: 4px 6px; border-radius: 7px; margin-top: 2px;
+}
+.ev-sev.SAFE       { background: var(--safe-bg);  color: #1a7a55; }
+.ev-sev.SUSPICIOUS { background: var(--susp-bg);  color: #8a5e0a; }
+.ev-sev.BLOCKED    { background: var(--block-bg); color: #9c2e10; }
+.ev-body { flex: 1; min-width: 0; }
+.ev-sig {
+  font-size: 13px; font-weight: 500;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.ev-meta { display: flex; align-items: center; gap: 10px; margin-top: 2px; flex-wrap: wrap; }
+.ev-ts   { font-size: 11px; color: var(--dim); font-family: var(--mono); }
+.ev-flow { font-size: 11px; color: var(--dim); }
+.ev-flow .arr { color: var(--coral); font-weight: 700; margin: 0 2px; }
+.feed-empty { padding: 36px 0; text-align: center; color: var(--dim); font-size: 13px; }
+.feed-empty .icon { font-size: 32px; margin-bottom: 8px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- Header -->
+  <header>
+    <div class="brand">
+      <div class="logo-mark">🛡️</div>
+      <div class="brand-text">
+        <div class="name">SecureHome</div>
+        <div class="tagline">IDS &middot; Active Response &middot; Live Monitor</div>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="pill-time" id="clock">--:--:--</div>
+      <div id="live-badge">
+        <span class="dot-live"></span>
+        <span id="live-text">Connecting…</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero banner -->
+  <div class="banner">
+    <div class="banner-left">
+      <div class="ttl">Live Threat Dashboard</div>
+      <div class="sub">ARCH_B &nbsp;·&nbsp; Suricata 7.x &nbsp;·&nbsp; IoT Segment 192.168.50.0/24</div>
+    </div>
+    <div class="banner-right">
+      <div class="banner-pill">🔴 Suricata IDS</div>
+      <div class="banner-pill">⚡ Active Response</div>
+      <div class="banner-pill">🔒 nftables Enforce</div>
+    </div>
+  </div>
+
+  <!-- Stat cards -->
+  <div class="stat-row">
+    <div class="stat-card">
+      <div class="stat-icon alerts">⚠️</div>
+      <div class="si-alerts">
+        <div class="stat-val" id="s-alerts">0</div>
+        <div class="stat-lbl">Total Alerts</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon blocked">🚫</div>
+      <div class="si-blocked">
+        <div class="stat-val" id="s-blocked">0</div>
+        <div class="stat-lbl">Blocked</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon devices">📡</div>
+      <div class="si-devices">
+        <div class="stat-val" id="s-dev">0</div>
+        <div class="stat-lbl">IoT Devices</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Attack Pipeline -->
+  <div class="pipeline-card">
+    <div class="section-title">Attack Pipeline</div>
+    <div id="pipe" class="pipe"></div>
+  </div>
+
+  <!-- Main two-col grid -->
+  <div class="main-grid">
+    <div class="card">
+      <div class="section-title">Devices on Segment</div>
+      <div id="devices">
+        <div class="feed-empty"><div class="icon">📡</div>No devices detected</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="section-title">Live Event Feed</div>
+      <div id="feed-scroll">
+        <div class="feed-empty"><div class="icon">🛰️</div>Waiting for traffic…</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+/* Clock */
+(function(){
+  const el = document.getElementById('clock');
+  function tick(){ el.textContent = new Date().toLocaleTimeString('en-GB'); }
+  tick(); setInterval(tick, 1000);
+})();
+
+/* Pipeline */
+let ORDER = ["COMPROMISE","DETECT","LOG","RESPOND","ENFORCE"];
+const STAGE_ICONS = { COMPROMISE:"💥", DETECT:"🔍", LOG:"📝", RESPOND:"⚡", ENFORCE:"🔒" };
+
+function renderPipe(pipeline){
+  const el = document.getElementById("pipe");
+  el.innerHTML = "";
+  ORDER.forEach((s,i) => {
+    const st = (pipeline && pipeline[s]) || "idle";
+    const d = document.createElement("div");
+    d.className = "stage " + (st === "idle" ? "" : st);
+    d.innerHTML =
+      '<div class="stage-icon">' + (STAGE_ICONS[s]||"◉") + '</div>' +
+      '<div class="stage-lbl">' + s + '</div>' +
+      '<div class="stage-num">0' + (i+1) + '</div>';
+    el.appendChild(d);
+  });
+}
+
+/* Devices */
+const DEV_ICONS = { camera:"📷", esp32:"🔌", plug:"💡", attacker:"☠️", c2:"🕷️" };
+
+function renderDevices(list){
+  const el = document.getElementById("devices");
+  if(!list || !list.length){
+    el.innerHTML = '<div class="feed-empty"><div class="icon">📡</div>No devices detected</div>';
+    return;
+  }
+  el.innerHTML = "";
+  list.forEach(d => {
+    const row = document.createElement("div");
+    row.className = "device-row";
+    row.innerHTML =
+      '<div class="dev-icon-wrap ' + d.kind + '">' + (DEV_ICONS[d.kind]||"◉") + '</div>' +
+      '<div class="dev-info">' +
+        '<div class="dev-name">' + d.name + '</div>' +
+        '<div class="dev-ip">' + d.ip + '</div>' +
+      '</div>' +
+      '<span class="dev-badge ' + d.kind + '">' + d.kind.toUpperCase() + '</span>';
+    el.appendChild(row);
+  });
+}
+
+/* Feed */
+function addEvent(ev, isNew){
+  const feed = document.getElementById("feed-scroll");
+  const empty = feed.querySelector(".feed-empty");
+  if(empty) empty.remove();
+  const row = document.createElement("div");
+  row.className = "ev-row" + (isNew ? " new" : "");
+  const flow = ev.src
+    ? '<span>' + (ev.src_name||ev.src) + '</span><span class="arr">→</span><span>' + (ev.dst_name||ev.dst) + '</span>'
+    : "";
+  row.innerHTML =
+    '<div class="ev-sev ' + ev.severity + '">' + ev.severity + '</div>' +
+    '<div class="ev-body">' +
+      '<div class="ev-sig" title="' + ev.signature + '">' + ev.signature + '</div>' +
+      '<div class="ev-meta">' +
+        '<span class="ev-ts">' + ev.ts + '</span>' +
+        (flow ? '<span class="ev-flow">' + flow + '</span>' : '') +
+      '</div>' +
+    '</div>';
+  feed.insertBefore(row, feed.firstChild);
+  while(feed.children.length > 60) feed.removeChild(feed.lastChild);
+}
+
+/* State */
+function applyState(s){
+  if(!s) return;
+  renderPipe(s.pipeline);
+  if(s.stats){
+    document.getElementById("s-alerts").textContent  = s.stats.alerts;
+    document.getElementById("s-blocked").textContent = s.stats.blocked;
+    document.getElementById("s-dev").textContent     = s.stats.devices;
+  }
+  if(s.devices) renderDevices(s.devices);
+}
+
+/* Live badge */
+function setLive(on){
+  const badge = document.getElementById("live-badge");
+  const text  = document.getElementById("live-text");
+  badge.className = on ? "on" : "";
+  text.textContent = on ? "LIVE" : "OFFLINE";
+}
+
+/* Boot */
+fetch("/api/state").then(r=>r.json()).then(d=>{
+  if(d.pipeline_order) ORDER = d.pipeline_order;
+  applyState(d.state);
+  (d.events||[]).slice().reverse().forEach(e=>addEvent(e,false));
+}).catch(()=>{});
+
+const es = new EventSource("/stream");
+es.onopen  = ()=>setLive(true);
+es.onerror = ()=>setLive(false);
+es.onmessage = (m)=>{
+  const d = JSON.parse(m.data);
+  if(d.pipeline_order) ORDER = d.pipeline_order;
+  if(d.type==="state"){
+    applyState(d.state);
+    (d.events||[]).slice().reverse().forEach(e=>addEvent(e,false));
+  } else if(d.type==="event"){
+    applyState(d.state);
+    addEvent(d.event, true);
+  }
+};
+</script>
+</body>
+</html>

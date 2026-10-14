@@ -1,0 +1,11 @@
+{"ts": 1789584194.82313, "action": "RESPOND", "dst": "192.168.50.200", "msg": "nftables drop rule added for 192.168.50.200 (TTL 120s)"}
+{"ts": 1789584196.0280483, "action": "ENFORCE", "dst": "192.168.50.200", "msg": "further beacons to 192.168.50.200 dropped at the router"}
+{"ts": 1789584316.0526497, "action": "EXPIRE", "dst": "192.168.50.200", "msg": "TTL elapsed, block on 192.168.50.200 lifted"}
+{"ts": 1789659685.4504318, "action": "RESPOND", "dst": "192.168.50.200", "msg": "nftables drop rule added for 192.168.50.200 (TTL 120s)"}
+{"ts": 1789659686.6554546, "action": "ENFORCE", "dst": "192.168.50.200", "msg": "further beacons to 192.168.50.200 dropped at the router"}
+{"ts": 1789659806.681748, "action": "EXPIRE", "dst": "192.168.50.200", "msg": "TTL elapsed, block on 192.168.50.200 lifted"}
+{"ts": 1791993585.7836623, "action": "RESPOND", "dst": "192.168.50.200", "msg": "nftables drop rule added for 192.168.50.200 (TTL 120s)"}
+{"ts": 1791993586.989674, "action": "ENFORCE", "dst": "192.168.50.200", "msg": "further beacons to 192.168.50.200 dropped at the router"}
+{"ts": 1791993707.0995758, "action": "EXPIRE", "dst": "192.168.50.200", "msg": "TTL elapsed, block on 192.168.50.200 lifted"}
+{"ts": 1791998109.8028753, "action": "RESPOND", "dst": "192.168.50.200", "msg": "nftables drop rule added for 192.168.50.200 (TTL 120s)"}
+{"ts": 1791998111.0099106, "action": "ENFORCE", "dst": "192.168.50.200", "msg": "further beacons to 192.168.50.200 dropped at the router"}

@@ -1,0 +1,4 @@
+# SecureHome staged blocklist (destination IPs treated as botnet C2).
+# setup.sh appends STAGED_C2_IP from config.dhruv.env to this file.
+# In production this is replaced by live feeds (abuse.ch Feodo, Spamhaus DROP).
+# One IPv4 per line.
